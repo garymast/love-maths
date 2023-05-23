@@ -38,8 +38,10 @@ function checkAnswer() {
 
     if (isCorrect) {
         alert('Hey! you got it right');
+        incrementScore();
     } else {
-        alert(`Wrong you answered ${userAnswer}, correct answer is ${calculatedAnswer[0]}!`)
+        alert(`Wrong you answered ${userAnswer}, correct answer is ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
@@ -53,17 +55,19 @@ function calculateCorrectAnswer() {
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
     } else {
-        alert(`Unimplemented operator ${ operator }`);
-        throw `Unimplemented operator ${ operator }.Aborting`;
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}.Aborting`;
     }
 }
 
 function incrementScore() {
-
+    let oldScore = parseInt(document.getElementById('score').innerText);
+    document.getElementById("score").innerText = ++oldScore;
 }
 
 function incrementWrongAnswer() {
-
+    let oldScore = parseInt(document.getElementById('incorrect').innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 }
 
 function displayAdditionQuestion(operand1, operand2) {
